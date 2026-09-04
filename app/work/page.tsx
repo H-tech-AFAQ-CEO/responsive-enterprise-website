@@ -1,0 +1,3 @@
+import { Header, Footer, SectionHeading, ProjectCard } from '@/components/site'
+import { projects } from '@/lib/mock-data'
+export default function Work() { return <><Header /><main><section className="page-intro container"><span className="eyebrow">Selected work</span><h1>Useful work for<br /><em>good people.</em></h1><p className="lede">A selection of identities, digital products, and experiences made in close collaboration.</p></section><section className="section container"><div className="filter-row"><span>All work</span><span>Strategy</span><span>Identity</span><span>Digital</span></div><div className="project-grid">{projects.map((project) => <ProjectCard key={project.slug} project={project} />)}</div></section></main><Footer /></> }

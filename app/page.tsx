@@ -1,47 +1,15 @@
-export default function Page() {
-  return (
-    <main
-      style={{
-        colorScheme: 'light dark',
-        position: 'relative',
-        display: 'flex',
-        minHeight: '100vh',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'light-dark(#fff, #000)',
-        color: 'light-dark(#000, #fff)',
-      }}
-    >
-      <svg
-        aria-hidden="true"
-        style={{ width: 80, height: 80 }}
-        width={80}
-        height={80}
-        fill="none"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-        stroke="currentColor"
-        strokeWidth="0.5"
-      >
-        <path
-          d="M14.2 14.2H17V6.9375C17 4.76288 15.2371 3 13.0625 3H5.8V5.8M14.2 14.2V7.79063L7.79062 14.2H14.2ZM14.2 14.2V17H6.9375C4.76288 17 3 15.2371 3 13.0625V5.8H5.8M5.8 5.8V12.2313L12.2313 5.8H5.8Z"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <p
-        style={{
-          position: 'absolute',
-          left: '50%',
-          top: 'calc(50% + 56px)',
-          transform: 'translateX(-50%)',
-          whiteSpace: 'nowrap',
-          fontSize: '14px',
-          fontWeight: 500,
-          color: 'light-dark(#71717a, #a1a1aa)',
-        }}
-      >
-        Your v0 generation will show here.
-      </p>
-    </main>
-  )
-}
+import Link from 'next/link'
+import { ArrowUpRight, Plus } from 'lucide-react'
+import { Header, Footer, SectionHeading, ProjectCard, ArticleCard } from '@/components/site'
+import { projects, services, testimonials, articles } from '@/lib/mock-data'
+
+export default function Home() { return <><Header /><main>
+  <section className="hero container"><div className="hero-top"><span className="eyebrow">Independent digital studio · Pakistan / Worldwide</span><span className="hero-year">Selected work<br />2021—24</span></div><h1>Good ideas deserve<br /><em>good company.</em></h1><div className="hero-bottom"><p>I&apos;m Afaq Ahmad, a designer and developer helping ambitious teams turn thoughtful ideas into clear, compelling digital experiences.</p><Link className="circle-link" href="/work" aria-label="Explore selected work"><ArrowUpRight size={22} /></Link></div></section>
+  <section className="marquee" aria-label="Capabilities"><div>STRATEGY <span>✦</span> IDENTITY <span>✦</span> DIGITAL <span>✦</span> STRATEGY <span>✦</span> IDENTITY <span>✦</span></div></section>
+  <section className="section container"><SectionHeading eyebrow="Selected work" title="A few things I&apos;ve helped bring to life." body="A small selection of recent partnerships across finance, culture, healthcare, and commerce." /><div className="project-grid">{projects.slice(0, 3).map((project, i) => <ProjectCard key={project.slug} project={project} featured={i === 0} />)}</div><Link className="under-link" href="/work">View all work <ArrowUpRight size={16} /></Link></section>
+  <section className="section tinted"><div className="container"><SectionHeading eyebrow="How I can help" title="From first question to final detail." /><div className="service-grid">{services.map((service) => <div className="service-item" key={service.number}><span className="service-number">{service.number}</span><h3>{service.title}</h3><p>{service.body}</p><Plus size={19} /></div>)}</div></div></section>
+  <section className="section container split-section"><SectionHeading eyebrow="A considered process" title="Clarity before creativity." body="The strongest work starts by asking better questions. I bring structure to complexity, then make the answer feel simple." /><div className="process-list"><div><span>01</span><p>Understand the context, audience, and ambition.</p></div><div><span>02</span><p>Find the clearest, most useful direction.</p></div><div><span>03</span><p>Make it real, refined, and ready to grow.</p></div></div></section>
+  <section className="section quote-section"><div className="container"><span className="eyebrow">Kind words</span><blockquote>“{testimonials[0].quote}”</blockquote><p className="quote-by">{testimonials[0].name} · {testimonials[0].role}</p></div></section>
+  <section className="section container"><SectionHeading eyebrow="From the journal" title="Thinking out loud." /><div className="article-grid">{articles.slice(0, 2).map((article) => <ArticleCard key={article.slug} article={article} />)}</div></section>
+  <section className="cta container"><div><span className="eyebrow">Have a good idea?</span><h2>Let&apos;s make<br /><em>it useful.</em></h2></div><Link className="circle-link light" href="/contact"><ArrowUpRight size={22} /></Link></section>
+</main><Footer /></> }

@@ -1,0 +1,5 @@
+import { notFound } from 'next/navigation'
+import { Header, Footer } from '@/components/site'
+import { articles, getArticle } from '@/lib/mock-data'
+export function generateStaticParams() { return articles.map((a) => ({ slug: a.slug })) }
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) { const { slug } = await params; const article = getArticle(slug); if (!article) notFound(); return <><Header /><main><section className="detail-hero container"><span className="eyebrow">{article.category} · {article.date} · {article.readTime}</span><h1>{article.title}</h1><p className="lede">{article.excerpt}</p></section><div className="detail-image container"><img src={article.image} alt="" /></div><article className="section container article-body"><p>Good work rarely arrives fully formed. It begins as a question, a conversation, or a small moment of attention. The job is to stay with that curiosity long enough for something useful to emerge.</p><p>This is a demo article body. The publishing workflow is ready for a CMS or API to replace this mock content with your own writing.</p></article></main><Footer /></> }

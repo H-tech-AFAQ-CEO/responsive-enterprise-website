@@ -1,0 +1,3 @@
+import { Header, Footer, SectionHeading, ArticleCard } from '@/components/site'
+import { articles } from '@/lib/mock-data'
+export default function Blog() { return <><Header /><main><section className="page-intro container"><span className="eyebrow">The journal</span><h1>Notes on making<br /><em>better things.</em></h1><p className="lede">Ideas, observations, and practical thoughts from the studio.</p></section><section className="section container"><SectionHeading eyebrow="Recent writing" title="Take what&apos;s useful." /><div className="article-grid three">{articles.map((article) => <ArticleCard key={article.slug} article={article} />)}</div></section></main><Footer /></> }
